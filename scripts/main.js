@@ -3,6 +3,7 @@ let textData
 let data
 let counter = 0 
 let allowedToLoop = true
+let dataLength = 0
 
 function preload() {
   data = loadJSON('images.json');
@@ -11,8 +12,19 @@ function preload() {
 function setup(){
   createCanvas(displayWidth,displayHeight);
   background(0)
+
+  dataLength = getDataLength(data) 
+
   frameRate(10)
   img = loadImage("media/" + data[0].image)
+}
+
+function getDataLength(theData){
+  let dL = 0 
+  for (let a in theData){
+    dL = a
+  }
+  return dL
 }
 
 function draw(){
@@ -36,7 +48,9 @@ function selectNextImage(){
   textData = data[counter].description
   textData.toString()
 
-  if(counter > 25){counter = 0}
+  if(counter > dataLength -1){
+    counter = 0
+  }
 
 }
 
