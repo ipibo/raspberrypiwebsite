@@ -12,20 +12,12 @@ function preload() {
 function setup(){
   createCanvas(displayWidth,displayHeight);
   background(0)
-
   dataLength = getDataLength(data) 
-
   frameRate(10)
   img = loadImage("media/" + data[0].image)
 }
 
-function getDataLength(theData){
-  let dL = 0 
-  for (let a in theData){
-    dL = a
-  }
-  return dL
-}
+
 
 function draw(){
   image(img,0,0,displayWidth,displayHeight)
@@ -36,17 +28,14 @@ function draw(){
 
   if(allowedToLoop){
     selectNextImage()
-  }
 
 }
 
 function selectNextImage(){
   counter++
-
   img = loadImage("media/" + data[counter].image)
 
   textData = data[counter].description
-  textData.toString()
 
   if(counter > dataLength -1){
     counter = 0
@@ -56,4 +45,14 @@ function selectNextImage(){
 
 function mousePressed(){
   allowedToLoop = !allowedToLoop
+}
+
+
+function getDataLength(theData){
+  let dL = 0 
+
+  for (let a in theData){
+    dL = a
+  }
+  return dL
 }
