@@ -5,38 +5,63 @@ let counter = 0
 let allowedToLoop = true
 let dataLength = 0
 let imgUrl 
+let onPhone = false
+let pixFromLeft = 0;
+
+let goToLeft = true
+const scrollSpeed = 5
+
+let timer = 0
+let timePassed = 0
+
 
 function preload() {
   data = loadJSON('images.json');
 }
 
 function setup(){
-  // createCanvas(displayWidth,displayHeight);
   noCanvas()
   background(0)
   dataLength = getDataLength(data) 
-  frameRate(10)
-  img = loadImage("media/" + data[0].image)
+  selectNextImage()
 }
 
-
-
 function draw(){
-
   const theImage = document.getElementById("image")
-  theImage.setAttribute("width", "304");
-  theImage.setAttribute("height", "228");
   theImage.setAttribute("src",imgUrl)
 
-  const theText = document.getElementById("text")
-  theText.innerHTML = textData
+  const discription = document.getElementById("discription")
+  discription.innerHTML = textData
+  
 
-  if(allowedToLoop) selectNextImage()
+  if(allowedToLoop) {
+    discription.setAttribute("style","display:none")  
+    pixFromLeft = 0
+  }
+  
+  if(!allowedToLoop){
+    discription.setAttribute("style","display:block")  
+    
+    if(goToLeft)pixFromLeft -= scrollSpeed
+    if(!goToLeft)pixFromLeft += scrollSpeed
 
+    if(pixFromLeft < -(theImage.width - displayWidth) || pixFromLeft > 40) goToLeft = !goToLeft
+
+  }
+
+  theImage.setAttribute("style","left:"+pixFromLeft+"px")
+
+  timer = int(millis()) - timePassed
+
+  if(timer > 250 ){
+    timePassed = int(millis())
+    if(allowedToLoop) selectNextImage()
+  }
 }
 
 function selectNextImage(){
   counter++
+  
   img = loadImage("media/" + data[counter].image)
   imgUrl = "media/" + data[counter].image
   textData = data[counter].description
@@ -44,9 +69,16 @@ function selectNextImage(){
 }
 
 function mousePressed(){
-  allowedToLoop = !allowedToLoop
+  if(!onPhone){
+    allowedToLoop = !allowedToLoop
+  }
 }
 
+function touchStarted() {
+  if(onPhone){
+    allowedToLoop = !allowedToLoop
+  }
+}
 
 function getDataLength(theData){
   let dL = 0 
@@ -61,3 +93,10 @@ function checkCounter(c,length){
     return false
   }
 }
+
+//check if it's on a phone or not
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+  console.log("android")
+  onPhone = true
+ }
+ 

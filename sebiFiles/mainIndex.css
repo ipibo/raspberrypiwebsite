@@ -1,0 +1,130 @@
+.wrap{
+    height: 100%;
+    width: 100%;
+    /* overflow-x: hidden;
+    overflow-y: hidden; */
+    /* background-color: blue; */
+    position: relative;
+
+    overflow-x: auto;
+    /* white-space: nowrap; */
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+
+.title{
+    font-size: 3vmax ;
+    font-family: 'Arial', sans-serif;
+    font-weight: 300;
+    color: rgb(0, 0, 0);
+    margin-right:0;
+    width: 60%;
+    /* height: 4.8vmax;
+    line-height: 4.8vmax; */
+    /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+    /* background-color: rgba(209, 20, 20, 0.5); */
+    /* display: inline; */
+    position: relative;
+    padding-right: 1%;
+    padding-left: 1%;
+
+}
+@media only screen and (max-width: 700px){
+    .title {
+    font-size: 5vmax ;
+    left:20%;
+    }
+}
+.thumbnail{
+    position: absolute;
+    width: 5%;
+    filter: grayscale(100%);
+    /* border: 2px solid black; */
+   
+}
+@media only screen and (max-width: 700px){
+    .thumbnail {
+    width: 20%;
+    }
+}
+.image{
+    filter: grayscale(100%);
+    height:100%;
+    position: absolute;
+    opacity: 1;
+    /* right:0; */
+    transition: right 2s;
+    /* margin: -0.1%; */
+    /* transition: filter 1s, transform 1s, opacity 1s, filter 0.2s, width 1s;
+    -webkit-transition: filter 1s, transform 1s, opacity 1s; */
+
+}
+
+    font-family: Arial, Helvetica, sans-serif; 
+    font-size:3vmax;
+    width: 100%;
+    height: 15%;
+    padding:6%;
+    z-index: 9999!important;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 10px 10px 50px 40px rgba(0, 0, 0, 0.8);
+    top:120%;
+    position: fixed;
+    bottom:0;
+    color: white;
+    display: none;
+    transition: top 10s;
+    -webkit-transition: top 10s;
+}
+.image:hover{
+    opacity: 1;
+}
+.next{
+    font-family: Arial, Helvetica, sans-serif; 
+    color:black;
+    font-size: 5vmax;
+    background-color: white;
+    width: auto;
+    height: 5%;
+    position: fixed;
+    top:80%;
+    z-index: 99999!important;
+}
+.click{
+/*     width:60%!important; */
+    /* height:60%!important; */
+    filter: grayscale(0%);
+}
+
+.timeline{
+
+    /* background-color: blue; */
+    width: 100%;
+}
+
+
+a:hover{
+    color: rgb(125, 125, 125);
+}
+.active{
+    transition: font-size 0.5s, opacity 0.5s;
+}
+
+
+.backgroundivs{
+    position: absolute;
+    z-index: -100;
+    margin-top: 0;
+}
+a{
+    text-decoration: none;
+    color:  rgb(245, 245, 245);
+}

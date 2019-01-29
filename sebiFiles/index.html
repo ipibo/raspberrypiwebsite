@@ -1,0 +1,27 @@
+{% extends 'portfolio/baseIndex.html'%}
+
+{% block body %}
+    {% load static %}
+    <div></div>
+    <div id="wrap" class="wrap">
+    {% for project in projects %}        
+        
+    <!-- <a href="/portfolio/{{ project.slug }}"> -->
+        <!-- <div class="title noselect">{{ project.title }} </div> -->
+    <!-- </a> -->
+        <div class="timeline">
+        {% for image in project.image_set.all|slice:":1" %}
+            <div class="images">
+                <img id="click" class="image distribute" src="{{image.image.url}}">
+                <div class="description">{{image.description}}</div>
+            </div>
+
+        {% endfor %}
+        </div>
+        <!-- <div class="next">NEXT</div> -->
+    {% endfor %}
+    </div>
+
+    <script src="{% static 'portfolio/js/app2.js' %}" charset="utf-8"></script>    
+{% endblock %}
+          
